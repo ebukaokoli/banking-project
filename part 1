@@ -1,0 +1,129 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  string username = "rbrown" , password = "blue123" , Customer ="Robert Brown";
+  int savings = 2500;
+  int checking = 35;
+   string accName,pass;
+    cout<<"Enter the username\n";
+    cin>> accName;
+    cout<<"Enter the password\n";
+    cin>> pass;
+    
+    if(username == accName && password == pass)
+    
+    while(1)
+    {
+        cout<< "1 Deposit \n 2 Withdrawal \n 3 Balance Inquiry \n 4 Transfer Balance \n 5 Log out"<<endl;
+        cout<< "Enter Choice : ";
+                int operation;
+        cin>> operation;
+        if(operation==1)
+        {
+            cout<<"Enter Amount(whole Dollar) to deposit:" <<endl;
+            float amount;
+            int flag= 0;
+            
+            while(1)
+            {
+                cin>>amount;
+                int res=amount/1;
+                if(amount>0 and res*1==amount)
+                {
+                    flag=1;
+                    break;
+                }
+                else
+                {
+                    cout<<"Enter whole Dollar,Bank Do not Collect coins.:"<<endl;
+                }
+            }
+            if(flag==1) savings+=(int)amount;
+        }
+        else if(operation==2)
+        {
+            cout<<"Enter Amount(whole Dollar) to withdraw:"<<endl;
+            float amount;
+            int flag;
+            while(1)
+              {
+                flag=0;
+                cin>>amount;
+                int res=amount/1;
+                if(amount>0 and res*1==amount)
+                {
+                    flag=1;
+                }
+                 else{
+                     cout<<"Enter whole dollar, Bank do not distribute coins.:"<<endl;
+                 }
+                if (flag==1)
+                {
+                    if(amount<=savings)
+                    {
+                        flag=2;
+                        break;
+                    }
+                     else 
+                     {
+                         cout<<"Not sufficient Amount on your Savings Account."<<endl;
+                         break;
+                     }
+                }
+            }
+            if(flag==2) savings-=(int)amount;
+        }
+        else if(operation==3){
+            cout<<"Savings Account:"<<"$"<<savings<<endl;
+            cout<<"checking Account:"<<"$"<<checking<<endl;
+        }
+        else if(operation==4){
+            cout<<"Enter Amount to transfer :";
+            float transfer;
+            int flag;
+            while(1){
+                flag=0;
+                cin>>transfer;
+                int res=transfer/1;
+                if(transfer>0 and res*1==transfer){
+                    flag=1;
+                }
+                else {
+                    cout<<"Enter whole dollar, Bank do not operate on coins."<<endl;
+                    continue;
+                }
+                if(flag==1){
+                if(transfer<=savings){
+                    flag=2;
+                    break;
+                }
+                    else{
+                          cout<<"Not sufficient Balance in savings account."<<endl;
+                        continue;
+                    }
+                }
+            }
+            if(flag==2){
+                cout<<"Enter Account Number :"<<endl;
+                int accountno;
+                cin>>accountno;
+                savings-=(int)transfer;
+            }
+        }
+        else if(operation==5){
+            break;
+        }
+        else{
+            cout<<"Invalid Input"<<endl;
+        }
+    }
+    cout<<"Transaction succesfull !"<<endl;
+    cout<<"Savings Account Balance:"<<savings<<endl;
+    cout<<"checking Account :"<<checking<<endl;
+
+    return 0;
+}
+                
+        
